@@ -13,9 +13,9 @@
 		<vm:MainWindowViewModel/>
 	</Design.DataContext>
 
-	<StackPanel>
-		<TextBox>Saludos</TextBox>
-		<TextBox Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center">
+	<StackPanel VerticalAlignment="Center">
+		<!--<TextBox>Saludos</TextBox>-->
+		<TextBox Text="{Binding Greeting}" HorizontalAlignment="Center">
 			<Interaction.Behaviors>
 				<avaloniaApplication10:FlyoutOnFocusBehavior />
             </Interaction.Behaviors>
