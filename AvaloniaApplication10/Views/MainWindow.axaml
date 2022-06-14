@@ -1,0 +1,35 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaApplication10.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:avaloniaApplication10="clr-namespace:AvaloniaApplication10"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaloniaApplication10.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AvaloniaApplication10">
+
+	<Design.DataContext>
+		<vm:MainWindowViewModel/>
+	</Design.DataContext>
+
+	<StackPanel>
+		<TextBox>Saludos</TextBox>
+		<TextBox Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center">
+			<Interaction.Behaviors>
+				<avaloniaApplication10:FlyoutOnFocusBehavior />
+            </Interaction.Behaviors>
+
+			<FlyoutBase.AttachedFlyout>
+				<Flyout ShowMode="Transient">
+					<StackPanel>
+						<TextBlock>Hello</TextBlock>
+						<TextBox Text="from a flyout"></TextBox>
+					</StackPanel>
+				</Flyout>
+			</FlyoutBase.AttachedFlyout>
+
+		</TextBox>
+	</StackPanel>
+
+</Window>
