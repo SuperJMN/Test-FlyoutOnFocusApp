@@ -21,34 +21,22 @@ public class FlyoutOnFocusBehavior : Behavior<Control>
     {
         base.OnAttachedToVisualTree();
 
-        var isFocused = AssociatedObject.GetObservable(InputElement.IsFocusedProperty);
-
         var visualRoot = AssociatedObject.GetVisualRoot() as Control;
+        OnPressed(visualRoot)
+            .Where(args => args.EventArgs.Source is not LightDismissOverlayLayer)
+            .Select(args => args.EventArgs.Source is Visual v ? AssociatedObject.IsVisualAncestorOf(v) : false)
+            .Do(ToggleFlyout)
+            .Subscribe();
 
+        Observable.FromEventPattern(AssociatedObject, nameof(InputElement.GotFocus)).Subscribe(_ => ShowFlyout());
+    }
+
+    private static IObservable<EventPattern<PointerPressedEventArgs>> OnPressed(Control? visualRoot)
+    {
         var parentPressed = Observable.FromEventPattern<PointerPressedEventArgs>(
             add => visualRoot.AddHandler(InputElement.PointerPressedEvent, add, RoutingStrategies.Tunnel),
             action => visualRoot.RemoveHandler(InputElement.PointerPressedEvent, action));
-
-        parentPressed.WithLatestFrom(isFocused, (unit, b) =>
-            {
-                return new { b, unit };
-            })
-            .Where(arg => arg.unit.EventArgs.Source is not LightDismissOverlayLayer)
-            .Select(arg => arg.unit.EventArgs.Source is Visual v ? AssociatedObject.IsVisualAncestorOf(v) : false)
-            .Subscribe(x =>
-            {
-                OnParentPressed(x);
-            });
-
-        //Observable.FromEventPattern(AssociatedObject, nameof(InputElement.GotFocus)).Subscribe(_ => ShowFlyout());
-        //Observable.FromEventPattern(AssociatedObject, nameof(InputElement.LostFocus)).Subscribe(_ => HideFlyout());
-        Observable.FromEventPattern(visualRoot, nameof(Window.Activated)).Subscribe(_ =>
-        {
-            if (AssociatedObject.IsFocused)
-            {
-                ShowFlyout();
-            }
-        });
+        return parentPressed;
     }
 
     private void RejectClose(object? sender, CancelEventArgs e)
@@ -56,9 +44,9 @@ public class FlyoutOnFocusBehavior : Behavior<Control>
         e.Cancel = true;
     }
 
-    private void OnParentPressed(bool shouldShow)
+    private void ToggleFlyout(bool isVisible)
     {
-        if (shouldShow)
+        if (isVisible)
         {
             ShowFlyout();
         }
@@ -86,6 +74,7 @@ public class FlyoutOnFocusBehavior : Behavior<Control>
     private void ShowFlyout()
     {
         var flyout = GetFlyout();
+
 
         if (flyout.IsOpen)
         {
