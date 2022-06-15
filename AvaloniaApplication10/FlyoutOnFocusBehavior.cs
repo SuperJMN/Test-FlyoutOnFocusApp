@@ -33,16 +33,16 @@ public class FlyoutOnFocusBehavior : Behavior<Control>
             return;
         }
 
-        var wrapper = new FlyoutController(flyoutBase, AssociatedObject);
+        var flyoutController = new FlyoutController(flyoutBase, AssociatedObject);
 
         OnPressed(visualRoot)
             .Select(ea => ea.EventArgs.Source)
             .Where(interactive => interactive is not LightDismissOverlayLayer)
             .Select(interactive => IsVisualAncestor(interactive, AssociatedObject))
-            .Do(isAncestor => wrapper.IsOpen = isAncestor)
+            .Do(isAncestor => flyoutController.IsOpen = isAncestor)
             .Subscribe();
 
-        //Observable.FromEventPattern(AssociatedObject, nameof(InputElement.GotFocus)).Subscribe(_ => ShowFlyout());
+        Observable.FromEventPattern(AssociatedObject, nameof(InputElement.GotFocus)).Subscribe(_ => flyoutController.IsOpen = true);
     }
 
     private static bool IsVisualAncestor(IInteractive? interactive, IVisual associatedObject)

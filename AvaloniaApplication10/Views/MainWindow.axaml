@@ -15,7 +15,7 @@
 	</Design.DataContext>
 
     <Panel>
-        <Button Content="Button" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBox Text="Another text box" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <StackPanel VerticalAlignment="Center">
             <TextBox Text="{Binding Greeting}" HorizontalAlignment="Center">
                 <i:Interaction.Behaviors>
