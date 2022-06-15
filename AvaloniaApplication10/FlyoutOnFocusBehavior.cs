@@ -4,6 +4,7 @@ using System.Reactive;
 using System.Reactive.Linq;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Diagnostics;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
@@ -39,7 +40,7 @@ public class FlyoutOnFocusBehavior : Behavior<Control>
                 OnParentPressed(x);
             });
 
-        Observable.FromEventPattern(AssociatedObject, nameof(InputElement.GotFocus)).Subscribe(_ => ShowFlyout());
+        //Observable.FromEventPattern(AssociatedObject, nameof(InputElement.GotFocus)).Subscribe(_ => ShowFlyout());
         //Observable.FromEventPattern(AssociatedObject, nameof(InputElement.LostFocus)).Subscribe(_ => HideFlyout());
         Observable.FromEventPattern(visualRoot, nameof(Window.Activated)).Subscribe(_ =>
         {
@@ -78,7 +79,8 @@ public class FlyoutOnFocusBehavior : Behavior<Control>
 
         flyout.Closing -= RejectClose;
         flyout.Closing += DoNothing;
-        flyout.Hide();
+        flyout.Hide(); 
+        ((IPopupHostProvider)flyout).PopupHost?.Hide();
     }
 
     private void ShowFlyout()
