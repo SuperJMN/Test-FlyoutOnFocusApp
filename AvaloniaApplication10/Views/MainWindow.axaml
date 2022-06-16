@@ -7,6 +7,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="AvaloniaApplication10.Views.MainWindow"
         xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+        xmlns:avalonia="clr-namespace:Zafiro.Avalonia;assembly=Zafiro.Avalonia"
         Icon="/Assets/avalonia-logo.ico"
         Title="AvaloniaApplication10">
 
@@ -19,7 +20,7 @@
         <StackPanel VerticalAlignment="Center">
             <TextBox Text="{Binding Greeting}" HorizontalAlignment="Center">
                 <i:Interaction.Behaviors>
-                    <avaloniaApplication10:FlyoutOnFocusBehavior />
+                    <avalonia:ShowAttachedFlyoutWhenFocusedBehavior />
                 </i:Interaction.Behaviors>
 
                 <FlyoutBase.AttachedFlyout>

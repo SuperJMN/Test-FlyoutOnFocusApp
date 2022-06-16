@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaApplication10", "AvaloniaApplication10\AvaloniaApplication10.csproj", "{F40552C2-CA3C-49B4-BE2A-B546022EF37B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaApplication10", "AvaloniaApplication10\AvaloniaApplication10.csproj", "{F40552C2-CA3C-49B4-BE2A-B546022EF37B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zafiro.Avalonia", "Zafiro.Avalonia\Zafiro.Avalonia\Zafiro.Avalonia.csproj", "{FD1D9ED6-C949-40C7-AE5E-89743F0BD453}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F40552C2-CA3C-49B4-BE2A-B546022EF37B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F40552C2-CA3C-49B4-BE2A-B546022EF37B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F40552C2-CA3C-49B4-BE2A-B546022EF37B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD1D9ED6-C949-40C7-AE5E-89743F0BD453}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD1D9ED6-C949-40C7-AE5E-89743F0BD453}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD1D9ED6-C949-40C7-AE5E-89743F0BD453}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD1D9ED6-C949-40C7-AE5E-89743F0BD453}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
